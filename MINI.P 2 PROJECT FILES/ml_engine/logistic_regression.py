@@ -63,8 +63,10 @@ class LogisticRegression:
             })
             print(epoch)
             print("loss: ", loss)
+            print("W: ", self.w)
+            print("B: ", self.b)
 x = [1, 2, 3, 5, 6, 2, 5, 3, 6, 3]
-y = [0, 1, 1, 1, 1, 0, 1, 0, 1, 0]
+y = [0, 0, 1, 1, 1, 0, 1, 0, 1, 0]
 model = LogisticRegression(0.01, 40000)
 model.fit(x, y)
 predicted = model.classify(x)
