@@ -1,11 +1,14 @@
 import { useState } from "react";
 
-function ParameterPanel() {
+function ParameterPanel(props) {
     const [learningRate, setRate] = useState(0.01);
     const [epochs, setEpochs] = useState(100);
     const [neurons, setNeurons] = useState(10);
+    const [k, setK] = useState(3);
     return (
+
         <div>
+        <h2>{props.title}</h2>
         <p>Learning Rate: {learningRate}</p>
         <input
         type="number"
@@ -28,7 +31,20 @@ function ParameterPanel() {
         value={neurons}
         onChange={(event) => setNeurons(Number(event.target.value))}
         />
+        <br>
+        </br>
+
+
+        {props.algorithm === "KNN" && (
+            <div>
+                <p> K :</p>
+                <input type="number" value={k} onChange={(event) => setK(Number(event.target.value))}></input>
+                <p>KNN selected 🧠</p>
+                <p>K value: {k}</p>
+            </div>
+        )}
         </div>
+
     );
 }
 
