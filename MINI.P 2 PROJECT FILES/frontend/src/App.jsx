@@ -1,35 +1,62 @@
 import ParameterPanel from "./components/ParameterPanel";
-import {useState} from "react";
+import { useState } from "react";
 
-function App(){
-  const [algorithm, setAlgorithm] = useState("Linear Regression");
-  return (
-    <div> 
-      <h2> Selected Algorithm : {algorithm}</h2>
-      <ParameterPanel title="ML parameters" algorithm={algorithm}/>
-      <select value={algorithm} onChange={(event) =>setAlgorithm(event.target.value)} >
-        <option value="Single Linear Regression">
-            Single Linear Regression
-        </option>
+function App() {
+    const [algorithm, setAlgorithm] = useState("Single Linear Regression");
+    const algorithms = [
+        {
+            name: "Single Linear Regression",
+            category: "Regression"
+        },
+        {
+            name: "Multiple Linear Regression",
+            category: "Regression"
+        },
+        {
+            name: "Multivariate Linear Regression",
+            category: "Regression"
+        },
+        {
+            name: "Logistic Regression",
+            category: "Classification"
+        },
+        {
+            name: "KNN",
+            category: "Classification"
+        },
+        {
+            name: "Neural Network",
+            category: "Deep Learning"
+        }
+    ];
+    const selectedAlgorithm = algorithms.find(
+        (item) => item.name === algorithm
+    );
+    return (
+        <div>
+            <h2>Selected Algorithm: {algorithm}</h2>
+            <p>Category: {selectedAlgorithm.category}</p>
 
-        <option value="Multiple Linear Regression">
-            Multiple Linear Regression
-        </option>
+            <ParameterPanel
+                title="ML parameters"
+                algorithm={algorithm}
+            />
+            <select
+                value={algorithm}
+                onChange={(event) => setAlgorithm(event.target.value)}
+            >
+                {algorithms.map((algorithm) => (
+                    <option
+                        key={algorithm.name}
+                        value={algorithm.name}
+                    >
+                        {algorithm.name}
+                    </option>
+                ))}
+            </select>
 
-        <option value="Multivariate Linear Regression">
-            Multivariate Linear Regression
-        </option>
-
-        <option value="Logistic Regression">
-            Logistic Regression
-        </option>
-
-        <option value="KNN">
-            KNN
-        </option>
-      </select>
-    </div>
-  )
+        </div>
+    );
 }
 
 export default App;

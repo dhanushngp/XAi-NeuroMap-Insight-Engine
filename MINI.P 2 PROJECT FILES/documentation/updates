@@ -20,3 +20,8 @@ location: ml_engine
 
 Downloaded and Integrated React js 
 created components (--1) file in components
+
+--v1.00.05
+
+Establish props in React 
+Connected parent and child class for data transfer

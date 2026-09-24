@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ParameterInput from "./ParameterInput";
 
 function ParameterPanel(props) {
     const [learningRate, setRate] = useState(0.01);
@@ -6,45 +7,41 @@ function ParameterPanel(props) {
     const [neurons, setNeurons] = useState(10);
     const [k, setK] = useState(3);
     return (
-
         <div>
-        <h2>{props.title}</h2>
-        <p>Learning Rate: {learningRate}</p>
-        <input
-        type="number"
-        value={learningRate}
-        onChange={(event) => setRate(Number(event.target.value))}
-        />
-
-        <p>Epochs: {epochs}</p>
-
-        <input
-        type="number"
-        value={epochs}
-        onChange={(event) => setEpochs(Number(event.target.value))}
-        />
-
-        <p>Neurons: {neurons}</p>
-
-        <input
-        type="number"
-        value={neurons}
-        onChange={(event) => setNeurons(Number(event.target.value))}
-        />
-        <br>
-        </br>
-
-
-        {props.algorithm === "KNN" && (
-            <div>
-                <p> K :</p>
-                <input type="number" value={k} onChange={(event) => setK(Number(event.target.value))}></input>
-                <p>KNN selected 🧠</p>
-                <p>K value: {k}</p>
-            </div>
-        )}
+            <h2>{props.title}</h2>
+            {props.algorithm !== "KNN" && (
+                <ParameterInput
+                    type="number"
+                    label="LearningRate"
+                    value={learningRate}
+                    onChange={(event) => setRate(Number(event.target.value))}
+                />
+            )}
+            {props.algorithm !== "KNN" && (
+                <ParameterInput
+                    label="Epochs"
+                    value={epochs}
+                    onChange={(event) => setEpochs(Number(event.target.value))}
+                />
+            )}
+            {props.algorithm === "Neural Network" && (
+                <ParameterInput
+                    label="Neurons"
+                    value={neurons}
+                    onChange={(event) => setNeurons(Number(event.target.value))}
+                />
+            )}
+            {props.algorithm === "KNN" && (
+                <div>
+                    <p>K value: {k}</p>
+                    <input
+                        label="K value"
+                        value={k}
+                        onChange={(event) => setK(Number(event.target.value))}
+                    />
+                </div>
+            )}
         </div>
-
     );
 }
 
