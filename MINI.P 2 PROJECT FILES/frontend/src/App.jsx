@@ -1,41 +1,17 @@
 import ParameterPanel from "./components/ParameterPanel";
 import { useState } from "react";
+import algorithms from "./data/algorithms";
 
 function App() {
     const [algorithm, setAlgorithm] = useState("Single Linear Regression");
-    const algorithms = [
-        {
-            name: "Single Linear Regression",
-            category: "Regression"
-        },
-        {
-            name: "Multiple Linear Regression",
-            category: "Regression"
-        },
-        {
-            name: "Multivariate Linear Regression",
-            category: "Regression"
-        },
-        {
-            name: "Logistic Regression",
-            category: "Classification"
-        },
-        {
-            name: "KNN",
-            category: "Classification"
-        },
-        {
-            name: "Neural Network",
-            category: "Deep Learning"
-        }
-    ];
     const selectedAlgorithm = algorithms.find(
         (item) => item.name === algorithm
     );
     return (
         <div>
             <h2>Selected Algorithm: {algorithm}</h2>
-            <p>Category: {selectedAlgorithm.category}</p>
+            <p>category: {selectedAlgorithm.category}</p>
+            <p>Description: {selectedAlgorithm.description}</p>
 
             <ParameterPanel
                 title="ML parameters"
