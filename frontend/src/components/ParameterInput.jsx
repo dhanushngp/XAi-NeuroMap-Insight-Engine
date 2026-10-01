@@ -1,6 +1,8 @@
 function ParameterInput(props) {
+
     return (
         <div>
+
             <p>
                 {props.label}: {props.value}
             </p>
@@ -10,6 +12,7 @@ function ParameterInput(props) {
                 value={props.value}
                 onChange={props.onChange}
             />
+
         </div>
     );
 }
